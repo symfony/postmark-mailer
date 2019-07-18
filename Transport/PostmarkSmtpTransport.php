@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Component\Mailer\Bridge\Postmark\Smtp;
+namespace Symfony\Component\Mailer\Bridge\Postmark\Transport;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransport;
@@ -18,7 +18,7 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 /**
  * @author Kevin Verschaeve
  */
-class PostmarkTransport extends EsmtpTransport
+class PostmarkSmtpTransport extends EsmtpTransport
 {
     public function __construct(string $id, EventDispatcherInterface $dispatcher = null, LoggerInterface $logger = null)
     {
