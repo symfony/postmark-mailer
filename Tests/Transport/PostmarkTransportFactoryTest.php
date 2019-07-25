@@ -9,10 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Component\Mailer\Bridge\Postmark\Tests\Factory;
+namespace Symfony\Component\Mailer\Bridge\Postmark\Tests\Transport;
 
-use Symfony\Component\Mailer\Bridge\Postmark;
-use Symfony\Component\Mailer\Bridge\Postmark\Factory\PostmarkTransportFactory;
+use Symfony\Component\Mailer\Bridge\Postmark\Transport\PostmarkApiTransport;
+use Symfony\Component\Mailer\Bridge\Postmark\Transport\PostmarkSmtpTransport;
+use Symfony\Component\Mailer\Bridge\Postmark\Transport\PostmarkTransportFactory;
 use Symfony\Component\Mailer\Tests\TransportFactoryTestCase;
 use Symfony\Component\Mailer\Transport\Dsn;
 use Symfony\Component\Mailer\Transport\TransportFactoryInterface;
@@ -49,12 +50,12 @@ class PostmarkTransportFactoryTest extends TransportFactoryTestCase
 
         yield [
             new Dsn('api', 'postmark', self::USER),
-            new Postmark\Http\Api\PostmarkTransport(self::USER, $this->getClient(), $dispatcher, $logger),
+            new PostmarkApiTransport(self::USER, $this->getClient(), $dispatcher, $logger),
         ];
 
         yield [
             new Dsn('smtp', 'postmark', self::USER),
-            new Postmark\Smtp\PostmarkTransport(self::USER, $dispatcher, $logger),
+            new PostmarkSmtpTransport(self::USER, $dispatcher, $logger),
         ];
     }
 

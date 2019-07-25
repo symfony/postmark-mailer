@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Component\Mailer\Bridge\Postmark\Http\Api;
+namespace Symfony\Component\Mailer\Bridge\Postmark\Transport;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Mailer\Exception\HttpTransportException;
 use Symfony\Component\Mailer\SmtpEnvelope;
-use Symfony\Component\Mailer\Transport\Http\Api\AbstractApiTransport;
+use Symfony\Component\Mailer\Transport\AbstractApiTransport;
 use Symfony\Component\Mime\Email;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -23,7 +23,7 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 /**
  * @author Kevin Verschaeve
  */
-class PostmarkTransport extends AbstractApiTransport
+class PostmarkApiTransport extends AbstractApiTransport
 {
     private const ENDPOINT = 'http://api.postmarkapp.com/email';
 

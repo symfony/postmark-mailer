@@ -9,9 +9,8 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Component\Mailer\Bridge\Postmark\Factory;
+namespace Symfony\Component\Mailer\Bridge\Postmark\Transport;
 
-use Symfony\Component\Mailer\Bridge\Postmark;
 use Symfony\Component\Mailer\Exception\UnsupportedSchemeException;
 use Symfony\Component\Mailer\Transport\AbstractTransportFactory;
 use Symfony\Component\Mailer\Transport\Dsn;
@@ -28,11 +27,11 @@ final class PostmarkTransportFactory extends AbstractTransportFactory
         $user = $this->getUser($dsn);
 
         if ('api' === $scheme) {
-            return new Postmark\Http\Api\PostmarkTransport($user, $this->client, $this->dispatcher, $this->logger);
+            return new PostmarkApiTransport($user, $this->client, $this->dispatcher, $this->logger);
         }
 
         if ('smtp' === $scheme) {
-            return new Postmark\Smtp\PostmarkTransport($user, $this->dispatcher, $this->logger);
+            return new PostmarkSmtpTransport($user, $this->dispatcher, $this->logger);
         }
 
         throw new UnsupportedSchemeException($dsn, ['api', 'smtp']);
