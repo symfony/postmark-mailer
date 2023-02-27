@@ -112,6 +112,12 @@ class PostmarkApiTransport extends AbstractApiTransport
 
                 continue;
             }
+            
+            if($header instanceof UnstructuredHeader && in_array($header->getName(), ['MessageStream', 'X-PM-MessageStream']) ) {
+                $payload['MessageStream'] = $header->getValue();
+
+                continue;
+            }
 
             if ($header instanceof MessageStreamHeader) {
                 $payload['MessageStream'] = $header->getValue();
